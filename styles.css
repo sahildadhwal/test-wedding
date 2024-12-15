@@ -1,0 +1,160 @@
+/* Global Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    background-color: #fafafa;
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+}
+
+/* Hero Section */
+.hero {
+    background-image: url('/images/couple.jpg'); /* Replace with your background image */
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.hero-content {
+    text-align: center;
+    z-index: 2;
+}
+
+.hero-text {
+    color: white;
+}
+
+.hero-text h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.hero-text p {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 30px;
+}
+
+.cta-button {
+    background-color: #E91E63;
+    color: white;
+    padding: 15px 40px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #c2185b;
+}
+
+/* Event Details Section */
+.details {
+    padding: 80px 0;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    width: 80%;
+}
+
+.details-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.details-column {
+    width: 48%;
+    background: #f4f4f4;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.details-column h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.details-column p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.details-column ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.details-column ul li {
+    font-size: 1rem;
+    margin: 10px 0;
+    color: #444;
+}
+
+.details-column a.cta-button {
+    margin-top: 20px;
+    display: inline-block;
+}
+
+/* Address and Map Section */
+.map-section {
+    padding: 60px 0;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+.map-container {
+    margin-top: 30px;
+    position: relative;
+    width: 300px; /* Set a fixed width for the circular map */
+    height: 300px; /* Set a fixed height for the circular map */
+    overflow: hidden;
+    border-radius: 50%; /* Makes it circular */
+    border: 5px solid #E91E63; /* Adds a border around the map */
+    margin-left: auto; /* Centers the map */
+    margin-right: auto; /* Centers the map */
+}
+
+/* Footer Section */
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .details-row {
+        flex-direction: column;
+    }
+
+    .details-column {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .hero-text h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-text p {
+        font-size: 1.2rem;
+    }
+}
