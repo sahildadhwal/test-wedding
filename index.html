@@ -3,460 +3,281 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Join us in celebrating the wedding of Shruti & Parcel on April 18, 2025">
-    <title>Shruti & Parcel's Wedding - April 18, 2025</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <title>Wedding Invitation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;700&family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
-        /* Global Styles */
-        :root {
-            --primary-color: #E91E63;
-            --secondary-color: #c2185b;
-            --text-dark: #333;
-            --text-light: #555;
-            --background-light: #fafafa;
-            --spacing-unit: 20px;
-        }
-
         body, html {
             margin: 0;
             padding: 0;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Cormorant Garamond', serif;
+            background-color: #f9f5f0;
+            color: #4a4a4a;
             line-height: 1.6;
-            background-color: var(--background-light);
             scroll-behavior: smooth;
         }
-
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
+        .invitation-container {
+            max-width: 800px;
             margin: 0 auto;
-            padding: 0 var(--spacing-unit);
-        }
-
-        /* Hero Section */
-        .hero {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/couple.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-
-        .hero-content {
+            padding: 40px 20px;
             text-align: center;
-            z-index: 2;
-            animation: fadeIn 2s ease-in;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-
-        .hero-text {
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        .couple-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
         }
-
-        .hero-text h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 700;
-            margin-bottom: var(--spacing-unit);
+        .names {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4rem;
+            color: #6a4c4c;
+            margin-bottom: 20px;
         }
-
-        .hero-text p {
-            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
-            font-weight: 400;
-            margin-bottom: calc(var(--spacing-unit) * 1.5);
+        .invitation-text {
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.2rem;
         }
-
-        .cta-button {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 15px 40px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            display: inline-block;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .cta-button:hover {
-            background-color: var(--secondary-color);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Details Section */
         .details {
-            padding: calc(var(--spacing-unit) * 4) 0;
-            background-color: white;
+            margin-top: 30px;
+            font-weight: 300;
         }
-
-        .details-row {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: calc(var(--spacing-unit) * 2);
+        .rsvp {
+            margin-top: 40px;
+            font-style: italic;
+            color: #6a4c4c;
         }
-
-        .details-column {
-            background: #f4f4f4;
-            padding: calc(var(--spacing-unit) * 1.5);
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .details-column:hover {
-            transform: translateY(-5px);
-        }
-
-        .details-column h2 {
-            font-size: clamp(1.5rem, 3vw, 2rem);
-            margin-bottom: var(--spacing-unit);
-            color: var(--text-dark);
-        }
-
-        .details-column p {
-            color: var(--text-light);
-            margin-bottom: var(--spacing-unit);
-        }
-
-        .details-column ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .details-column ul li {
-            margin: calc(var(--spacing-unit) / 2) 0;
-            color: var(--text-light);
-        }
-
-        /* Map Section */
-        .map-section {
-            padding: calc(var(--spacing-unit) * 3) 0;
-            background-color: #f4f4f4;
-            text-align: center;
-        }
-
-        .map-section h2 {
-            color: var(--text-dark);
-            margin-bottom: var(--spacing-unit);
-        }
-
-        .map-section p {
-            color: var(--text-light);
-            margin-bottom: calc(var(--spacing-unit) * 1.5);
-        }
-
-        .map-container {
-            margin: calc(var(--spacing-unit) * 1.5) auto;
-            width: min(300px, 90vw);
-            height: min(300px, 90vw);
-            border-radius: 50%;
-            border: 5px solid var(--primary-color);
-            overflow: hidden;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Timeline Section */
-        .timeline {
-            padding: calc(var(--spacing-unit) * 4) 0;
-            background-color: white;
-        }
-
-        .timeline-item {
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            gap: var(--spacing-unit);
-            margin-bottom: calc(var(--spacing-unit) * 2);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease;
-        }
-
-        .timeline-item.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .timeline-content {
-            padding: var(--spacing-unit);
-            background: #f4f4f4;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .timeline-dot {
-            width: 20px;
-            height: 20px;
-            background-color: var(--primary-color);
-            border-radius: 50%;
-            margin: auto 0;
-            position: relative;
-        }
-
-        .timeline-dot::before {
-            content: '';
-            position: absolute;
-            height: 100%;
-            width: 2px;
-            background-color: var(--primary-color);
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        /* RSVP Form */
-        .rsvp-form {
-            display: grid;
-            gap: var(--spacing-unit);
-            max-width: 500px;
-            margin: var(--spacing-unit) auto;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: calc(var(--spacing-unit) / 2);
-        }
-
-        .form-group label {
-            color: var(--text-dark);
-            font-weight: 600;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-family: inherit;
-        }
-
-        /* Footer */
-        .footer {
-            background-color: var(--text-dark);
+        .guest-details-btn {
+            background-color: #6a4c4c;
             color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .guest-details-btn:hover {
+            background-color: #8a6c6c;
+        }
+        #password-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 300px;
             text-align: center;
-            padding: var(--spacing-unit);
+            border-radius: 10px;
         }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        #password-input {
+            width: 95%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
         }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .container {
-                width: 95%;
-                padding: 0 calc(var(--spacing-unit) / 2);
-            }
-
-            .timeline-item {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .timeline-dot {
-                display: none;
-            }
-
-            .details-column {
-                padding: var(--spacing-unit);
-            }
+        .modal-btn {
+            background-color: #6a4c4c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px 0;
+            cursor: pointer;
+            border-radius: 5px;
         }
-
-        @media (prefers-reduced-motion: reduce) {
-            .hero-content,
-            .timeline-item {
-                animation: none;
-                transition: none;
-            }
+        #guest-details {
+            display: none;
+            margin-top: 20px;
+            background-color: #f9f5f0;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+        }
+        .event-day {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .event-day h3 {
+            color: #6a4c4c;
+            border-bottom: 2px solid #6a4c4c;
+            padding-bottom: 10px;
+        }
+        .event-time {
+            font-weight: bold;
+            color: #6a4c4c;
+        }
+        .event-index {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .event-index-item {
+            background-color: #6a4c4c;
+            color: white;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .event-index-item:hover {
+            background-color: #8a6c6c;
         }
     </style>
 </head>
 <body>
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1>Shruti & Parcel</h1>
-                <p>Are getting married on April 18, 2025</p>
-                <a href="#details" class="cta-button">See Details</a>
-            </div>
+    <div class="invitation-container">
+        <img src="images/couple.jpg" alt="Wedding Couple" class="couple-image">
+        
+        <div class="names">
+            Shruti & Parcel
         </div>
-    </section>
-
-    <!-- Event Details Section -->
-    <section id="details" class="details">
-        <div class="container">
-            <div class="details-row">
-                <div class="details-column">
-                    <h2>Event Details</h2>
-                    <p>Join us for our special day filled with love, joy, and celebration.</p>
-                    <ul>
-                        <li><strong>Date:</strong> April 18, 2025</li>
-                        <li><strong>Time:</strong> 4:00 PM - 10:00 PM</li>
-                        <li><strong>Location:</strong> 730 5th Street, Fairfield, CA</li>
-                        <li><strong>Dress Code:</strong> Formal / Traditional</li>
-                    </ul>
-                </div>
-                <div class="details-column">
-                    <h2>RSVP</h2>
-                    <p>Please let us know if you'll be joining us in our celebration.</p>
-                    <form class="rsvp-form">
-                        <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="attending">Will you be attending?</label>
-                            <select id="attending" required>
-                                <option value="">Please select...</option>
-                                <option value="yes">Yes, I'll be there!</option>
-                                <option value="no">Sorry, I can't make it</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="cta-button">Submit RSVP</button>
-                    </form>
-                </div>
+        
+        <div class="invitation-text">
+            <p>We joyfully invite you to celebrate our wedding</p>
+            <div class="details">
+                <b>Friday<br>
+                <span>April 18th, 2025</span><br>
+                <span>4:00 PM</span><br>
+                <span>California</span>
+            </b>
             </div>
-        </div>
-    </section>
-
-    <!-- Timeline Section -->
-    <section class="timeline">
-        <div class="container">
-            <h2>Wedding Day Schedule</h2>
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <h3>4:00 PM</h3>
-                    <p>Guest Arrival & Welcome Drinks</p>
-                </div>
-                <div class="timeline-dot"></div>
-                <div></div>
-            </div>
-            <div class="timeline-item">
-                <div></div>
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h3>4:30 PM</h3>
-                    <p>Wedding Ceremony</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <h3>6:00 PM</h3>
-                    <p>Cocktail Hour & Photos</p>
-                </div>
-                <div class="timeline-dot"></div>
-                <div></div>
-            </div>
-            <div class="timeline-item">
-                <div></div>
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h3>7:00 PM</h3>
-                    <p>Reception Dinner</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Map Section -->
-    <section id="map-section" class="map-section">
-        <div class="container">
-            <h2>Our Wedding Location</h2>
-            <p><strong>Address:</strong> 730 5th Street, Fairfield, CA</p>
-            <div id="map" class="map-container"></div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; 2025 Shruti & Parcel. All rights reserved.</p>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Smooth scroll
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                });
-            });
-
-            // Timeline animation
-            const observerOptions = {
-                threshold: 0.2
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('.timeline-item').forEach(item => {
-                observer.observe(item);
-            });
-
-            // RSVP Form handling
-            document.querySelector('.rsvp-form').addEventListener('submit', function(e) {
-                e.preventDefault();
-                // Add your form submission logic here
-                alert('Thank you for your RSVP!');
-                this.reset();
-            });
-
-            // Map initialization
-            const address = "730 5th Street, Fairfield, CA";
-            var map = L.map('map', {
-                zoomControl: false,
-                attributionControl: false,
-                dragging: false,
-                touchZoom: false,
-                scrollWheelZoom: false
-            });
             
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
+            <div class="rsvp">
+                <p>Kindly RSVP by February 1st</p>
+                <!-- <p>Wedding Website: www. idk yet.com</p> -->
+            </div>
+            <button class="guest-details-btn" onclick="openPasswordModal()">Unlock Guest Details</button>
+            
+            <div id="guest-details">
+                <h2>Wedding Celebration Schedule</h2>
+                
+                <div class="event-index">
+                    <a href="#day-one" class="event-index-item">
+                        Day One: Wednesday, April 16th
+                        <br><b>Jago Nights</b>
+                    </a>
+                    <a href="#day-two" class="event-index-item">
+                        Day Two: Thursday, April 17th
+                        <br><b>Mendhi Ceremony</b>
+                    </a>
+                    <a href="#day-three" class="event-index-item">
+                        Day Three: Friday, April 18th
+                        <br><b>Jago & Sangeet Night</b>
+                    </a>
+                    <a href="#day-four" class="event-index-item">
+                        Day Four: Saturday, April 19th
+                        <br><b>Wedding Day</b>
+                    </a>
+                </div>
+                
+                <div id="day-one" class="event-day">
+                    <h3>Day One: Jago Night (Wednesday, April 16th)</h3>
+                    <p><span class="event-time">6:00 PM - 7:00 PM:</span> Guest Arrival & Welcome</p>
+                    <p><span class="event-time">7:00 PM - 9:00 PM:</span> Traditional Jago Ceremony</p>
+                    <p><span class="event-time">9:00 PM - 11:00 PM:</span> Dinner & Celebrations</p>
+                    <p><strong>What to Expect:</strong> Decorated dolis, women singing traditional songs, vibrant music, and family performances</p>
+                </div>
 
-            fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data && data[0]) {
-                        const lat = data[0].lat;
-                        const lon = data[0].lon;
-                        map.setView([lat, lon], 15);
-                        L.marker([lat, lon]).addTo(map)
-                            .bindPopup(`<b>Wedding Venue</b><br>${address}`)
-                            .openPopup();
-                    }
-                })
-                .catch(error => console.error("Error with geocoding:", error));
-        });
+                <div id="day-two" class="event-day">
+                    <h3>Day Two: Mendhi Ceremony (Thursday, April 17th)</h3>
+                    <p><span class="event-time">2:00 PM - 4:00 PM:</span> Ladies Mendhi Session</p>
+                    <p><span class="event-time">4:00 PM - 6:00 PM:</span> Professional Mendhi Artists</p>
+                    <p><span class="event-time">6:00 PM - 9:00 PM:</span> Mendhi Party & Performances</p>
+                    <p><strong>What to Wear:</strong> Bright, colorful Indian attire</p>
+                    <p><strong>Tips:</strong> Bring extra clothes, mendhi takes time to dry!</p>
+                </div>
+
+                <div id="day-three" class="event-day">
+                    <h3>Day Three: Jago & Sangeet Night (Friday, April 18th)</h3>
+                    <p><span class="event-time">5:00 PM - 7:00 PM:</span> Family Dance Rehearsals</p>
+                    <p><span class="event-time">7:00 PM - 10:00 PM:</span> Sangeet Performances</p>
+                    <p><span class="event-time">10:00 PM - 12:00 AM:</span> Open Dance Floor</p>
+                    <p><strong>Highlight:</strong> Family and friends dance performances celebrating the couple</p>
+                </div>
+
+                <div id="day-four" class="event-day">
+                    <h3>Day Four: Wedding Day (Saturday, April 19th)</h3>
+                    <p><span class="event-time">10:00 AM - 12:00 PM:</span> Groom's Baraat (Arrival)</p>
+                    <p><span class="event-time">12:00 PM - 1:00 PM:</span> Traditional Milni Ceremony</p>
+                    <p><span class="event-time">1:00 PM - 3:00 PM:</span> Wedding Ceremony</p>
+                    <p><span class="event-time">3:00 PM - 6:00 PM:</span> Lunch & Family Photos</p>
+                    <p><span class="event-time">6:00 PM - 11:00 PM:</span> Wedding Reception</p>
+                    <p><strong>Dress Code:</strong> Formal Indian Wedding Attire</p>
+                </div>
+
+                <div class="event-day">
+                    <h3>Guest Information</h3>
+                    <p><strong>Hotel Accommodation:</strong> Block rooms at Four Seasons Resort using code "WEDDING2025"</p>
+                    <p><strong>Transportation:</strong> Shuttle service available from hotel to venue</p>
+                    <p><strong>Parking:</strong> Complimentary valet parking at the venue</p>
+                </div>
+            
+            
+            </div>
+        </div>
+    </div>
+
+    <!-- Password Modal -->
+    <div id="password-modal">
+        <div class="modal-content">
+            <h2>Enter Password</h2>
+            <p>Please enter the password provided by the <i>Dadhwal Family</i></p>
+            <input type="password" id="password-input" placeholder="Enter password">
+            <button class="modal-btn" onclick="checkPassword()">Unlock</button>
+            <p id="error-message" style="color: red; display: none;">Incorrect password. Please try again.</p>
+        </div>
+    </div>
+
+    <script>
+        function openPasswordModal() {
+            document.getElementById('password-modal').style.display = 'block';
+        }
+
+        function checkPassword() {
+            const passwordInput = document.getElementById('password-input');
+            const errorMessage = document.getElementById('error-message');
+            const passwordModal = document.getElementById('password-modal');
+            const guestDetails = document.getElementById('guest-details');
+            
+            // TODO: add audio?
+            //if (passwordInput.value.toUpperCase() === 'LOVE') {
+            if(1===1){
+                passwordModal.style.display = 'none';
+                guestDetails.style.display = 'block';
+                errorMessage.style.display = 'none';
+            } else {
+                errorMessage.style.display = 'block';
+                passwordInput.value = '';
+            }
+        }
+
+        // Close modal if user clicks outside of it
+        window.onclick = function(event) {
+            const passwordModal = document.getElementById('password-modal');
+            if (event.target == passwordModal) {
+                passwordModal.style.display = 'none';
+            }
+        }
     </script>
 </body>
 </html>
