@@ -125,26 +125,36 @@
         }
         .event-index {
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             margin-bottom: 20px;
-            flex-wrap: wrap;
         }
         .event-index-item {
+            flex: 1;
+            margin: 0 10px;
+            padding: 15px;
             background-color: #6a4c4c;
             color: white;
-            padding: 10px 20px;
-            margin: 10px;
-            border-radius: 5px;
             text-decoration: none;
-            cursor: pointer;
+            border-radius: 5px;
+            text-align: center;
             transition: background-color 0.3s ease;
+        }
+        .event-index-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .event-index-date {
+            font-size: 0.9em;
+            opacity: 0.8;
         }
         .event-index-item:hover {
             background-color: #8a6c6c;
-        }
-    </style>
+        }    </style>
 </head>
 <body>
+    <!-- Audio element added -->
+    <audio id="wedding-music" src="audio/music.mp3"></audio>
+
     <div class="invitation-container">
         <img src="images/couple.jpg" alt="Wedding Couple" class="couple-image">
         
@@ -163,7 +173,9 @@
             </div>
             
             <div class="rsvp">
-                <p>Kindly RSVP by February 1st</p>
+                <p>Kindly RSVP by February 1st
+                    <br>Checks made out to: Sahil Dadhwal
+                </p>
                 <!-- <p>Wedding Website: www. idk yet.com</p> -->
             </div>
             <button class="guest-details-btn" onclick="openPasswordModal()">Unlock Guest Details</button>
@@ -173,23 +185,23 @@
                 
                 <div class="event-index">
                     <a href="#day-one" class="event-index-item">
-                        Day One: Wednesday, April 16th
-                        <br><b>Jago Nights</b>
+                        <div class="event-index-title">Day One: Jago Night</div>
+                        <div class="event-index-date">Wednesday, April 16th</div>
                     </a>
                     <a href="#day-two" class="event-index-item">
-                        Day Two: Thursday, April 17th
-                        <br><b>Mendhi Ceremony</b>
+                        <div class="event-index-title">Day Two: Mendhi Ceremony</div>
+                        <div class="event-index-date">Thursday, April 17th</div>
                     </a>
                     <a href="#day-three" class="event-index-item">
-                        Day Three: Friday, April 18th
-                        <br><b>Jago & Sangeet Night</b>
+                        <div class="event-index-title">Day Three: Jago & Sangeet Night</div>
+                        <div class="event-index-date">Friday, April 18th</div>
                     </a>
                     <a href="#day-four" class="event-index-item">
-                        Day Four: Saturday, April 19th
-                        <br><b>Wedding Day</b>
+                        <div class="event-index-title">Day Four: Wedding Day</div>
+                        <div class="event-index-date">Saturday, April 19th</div>
                     </a>
                 </div>
-                
+                                
                 <div id="day-one" class="event-day">
                     <h3>Day One: Jago Night (Wednesday, April 16th)</h3>
                     <p><span class="event-time">6:00 PM - 7:00 PM:</span> Guest Arrival & Welcome</p>
@@ -258,13 +270,27 @@
             const errorMessage = document.getElementById('error-message');
             const passwordModal = document.getElementById('password-modal');
             const guestDetails = document.getElementById('guest-details');
-            
-            // TODO: add audio?
-            //if (passwordInput.value.toUpperCase() === 'LOVE') {
-            if(1===1){
+            const music = document.getElementById('wedding-music');
+
+            // if (passwordInput.value.toUpperCase() === 'LOVE') {
+            if (passwordInput.value.toUpperCase() === 'APPLE') {
+            //if(1===1){
                 passwordModal.style.display = 'none';
                 guestDetails.style.display = 'block';
                 errorMessage.style.display = 'none';
+
+                 // Play music for 20 seconds
+                 music.currentTime = 0; // Reset to start
+                music.play();
+                
+                
+
+                // Scroll to guest details
+                guestDetails.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+
             } else {
                 errorMessage.style.display = 'block';
                 passwordInput.value = '';
